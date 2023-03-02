@@ -11,8 +11,6 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="node_modules/reset.css/reset.css" />
-
     <link rel="stylesheet" href="css/style.css" />
 
     <link rel="icon" href="favicon.png" />
@@ -90,8 +88,27 @@
           <div class="tweet_box-input">
             <img src="images/profilePic.jpeg" alt="profile imagw" />
             <input type="text" placeholder="What's happening?" id="text"/>
-            <button class="tweet_btn">Tweet</button>
+            <input type="file" id="imgInput" class="imgInput">
+            <label class="file-input__label" for="imgInput">
+              <svg width="800px" height="800px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000000">
+
+                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <g id="SVGRepo_iconCarrier">
+                
+                <path stroke="#ffffff" stroke-width="12" d="M30 40c0-5.523 4.477-10 10-10h112c5.523 0 10 4.477 10 10v112c0 5.523-4.477 10-10 10H40c-5.523 0-10-4.477-10-10V40Z"/>
+                
+                <path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="m30 138 34-34 24 24 40-40 34 34"/>
+                
+                </g>
+                
+                </svg>
+            </label>
+            <button class="tweet_btn" id="tweetBtn">Tweet</button>
           </div>
+          <div class="imgSrc"></div>
         </form>
       </div>
     
@@ -124,45 +141,9 @@
         </div> -->
       </div>
 
-      <div class="post">
-        <div class="post_profile-image">
-          <img src="images/page-profile-image.png" alt="java-logo" />
-        </div>
-
-        <div class="post_body">
-          <div class="post_header">
-            <div class="post_header-text">
-              <h3>
-                Java
-                <span class="header-icon-section">
-                  <span class="material-icons post_badge">verified</span>@java
-                </span>
-                
-              </h3>
-            </div>
-
-            <div class="post_header-discription">
-              <p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-              <br />
-              <p>
-                Download now: https://social.ora.cl/6012KoqQ0 <br />
-                Release notes: https://social.ora.cl/6013KoqQF <br />
-                API Javadoc: https://social.ora.cl/6015KoqQN <br />
-                Features: https://social.ora.cl/6016KoqQ4 <br />
-              </p>
-            </div>
-          </div>
-          <img src="images/post-image.jpeg" alt="java18" />
-
-          <div class="post_footer">
-            <span class="material-icons">chat</span>
-            <span class="material-icons">repeat</span>
-            <span class="material-icons">favorite_border</span>
-            <span class="material-icons">file_upload</span>
-          </div>
-        </div>
-      </div>
-    </div>  
+      <div class="list">
+        
+      </div>  
     
     </main>
     <!-- main section end -->
@@ -206,6 +187,7 @@
           src="https://platform.twitter.com/widgets.js"
           charset="utf-8"
         ></script>
+        <script src="./card.js"></script>
       </div>
     </aside>
     <!-- aside element ends -->

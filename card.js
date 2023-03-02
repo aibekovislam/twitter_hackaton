@@ -1,82 +1,101 @@
-// ? API для запросов 
-const API = "http://localhost:8000/cards"
-//? cards наш контейнер куда мы добавляем post
-const cards = document.querySelector("#cards")
-// const post = document.querySelector(".post")
-const inputText = document.querySelector("#text")
-const addPost = document.querySelector(".tweet_btn")
-
-//? инпуты и кнопка для модалки
+const API = 'http://localhost:8000/cards';
 
 
-//? input для поиска
-const searchTwitter = document.querySelector("#search")
-//? переменная по которой делаем запрос на поиск
-let searchVal = ''; 
+const tweetBtn = document.querySelector("#tweetBtn");
+const tweetInput = document.querySelector("#text");
+const list = document.querySelector(".list");
+const mainForm = document.querySelector("#add-form");
+const srcImg = document.querySelector(".imgSrc");
+const imgInput = document.querySelector("#imgInput")
+getCards();
 
-//? первоначальное отображение данных
-//? первоначальный рендер, при загрузке стягиваем данные с сервера
-getPosts();
-
-async function getPosts(){
-    const res = await fetch(`${API}?user_like=${searchVal}||text_like=${searchVal}`)
-    const data = await res.json(); //? расшифровка данных
-    // console.log(data);
-    render(data);
+async function getCards() {
+  const res = await fetch(API);
+  const data = await res.json();
+  render(data)
 }
-//? добавление в db.json
+
 async function addPost(post) {
-    await fetch (API, {
-        method: "POST",
-        body: JSON.stringify(post),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-    //? вызов для стягивания и отображения данных 
-    getPosts();
+  await fetch(API, {
+    method: "POST",
+    body: JSON.stringify(post),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  getCards();
 }
 
 function render(arr) {
-    cards.innerHTML = "";
-    arr.forEach((item) => {
-        cards.innerHTML += `<div class="post_profile-image">
+  list.innerHTML = '';
+  arr.forEach((item) => {
+    list.innerHTML += `
+    <div class="post">
+      <div class="post_profile-image">
         <img src="images/page-profile-image.png" alt="java-logo" />
       </div>
+          <div class="post_body">
+            <div class="post_header">
+              <div class="post_header-text">
+                <h3>
+                  Java
+                  <span class="header-icon-section">
+                    <span class="material-icons post_badge">verified</span>@java
+                  </span>
+                  
+                </h3>
+              </div>
 
-      <div class="post_body">
-        <div class="post_header">
-          <div class="post_header-text">
-            <h3>
-              User123
-              <span class="header-icon-section">
-            </h3>
-          </div>
+              <div class="post_header-discription">
+                <p>
+                  ${item.text}
+                </p>
+              </div>
+            </div>
+            <img src="./images/${item.img}" alt="java18" />
 
-          <div class="post_header-discription">
-            <p>${item.text}</p>
+            <div class="post_footer">
+              <span class="material-icons">chat</span>
+              <span class="material-icons">repeat</span>
+              <span class="material-icons">favorite_border</span>
+              <span class="material-icons">file_upload</span>
+            </div>
           </div>
         </div>
-        <br>
-        <div class="post_footer">
-          <span class="material-icons">chat</span>
-          <span class="material-icons">repeat</span>
-          <span class="material-icons">favorite_border</span>
-          <span class="material-icons">file_upload</span>
-        </div>
-      </div>`
-    })
+    </div>
+    `
+  })
 }
 
-addForm.addEventListener('click' (e) => {
-    const post = {
-        text: inputText.value,
-    }
-    addPost(post)
+
+mainForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if(!tweetInput.value.trim()) {
+    alert("Need TWEEEEET!");
+    return;
+  };
+  const post = {
+    text: tweetInput.value,
+    img: imgInput.files[0].name
+  };
+  addPost(post);
+  tweetInput.value = '';
+  srcImg.innerHTML = '';
+});
+
+
+
+function renderImg() {
+  let res = imgInput.files[0].name;
+  return res;
+}
+
+function waitImg() {
+  srcImg.innerHTML += `
+    <img src="./images/${renderImg()}">
+  `
+};
+
+imgInput.addEventListener('change', (e) => {
+  waitImg();
 })
-
-
-
-
-
-
