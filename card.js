@@ -9,7 +9,10 @@ const srcImg = document.querySelector(".imgSrc");
 const imgInput = document.querySelector("#imgInput");
 
 const editText = document.querySelector("#edit-text");
+const editImg = document.querySelector("#edit-img");
 const saveBtn = document.querySelector("#btn-save-edit");
+
+const newTweets = document.querySelector(".block__tweets");
 
 let searchVal = '';
 const searchInp = document.querySelector("#search");
@@ -110,7 +113,7 @@ function render(arr) {
 
             <div class="post_footer">
               <span id="icon_retweet" class="material-icons">repeat</span>
-              <span id="${item.id}" class="material-icons liked">favorite_border</span>
+              <span id="icon_like" class="material-icons">favorite_border</span>
             </div>
           </div>
         </div>
@@ -120,13 +123,26 @@ function render(arr) {
   renderPagination()
 }
 
+window.onscroll = function() {
+  let scrolled = window.pageYOffset || document.documentElement.scrollTop; // Получаем положение скролла
+  if(scrolled !== 0){
+    // Если прокрутка есть, то делаем блок прозрачным
+    // document.querySelector('.header').style.opacity = '0.5';
+    a.style.opacity = '0.5';
+    a.style.filter = 'blur(15px)'
+  }else{
+    // Если нет, то делаем его полностью видимым
+    // document.querySelector('.header').style.opacity = '1';
+    a.style.opacity = '1'
+  };
+};
 
 mainForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  // if(!tweetInput.value.trim() || !imgInput.) {
-  //   alert("Need TWEEEEET!");
-  //   return;
-  // };
+  if(!tweetInput.value.trim()) {
+    alert("Need TWEEEEET!");
+    return;
+  };
   const post = {
     text: tweetInput.value,
   };
@@ -160,13 +176,25 @@ document.addEventListener('click', (e) => {
       deleteTweet(e.target.id);
   };
 });
+// let count = 0
+// document.addEventListener('click', (e) => {
+//   if(e.target.classList.contains('liked')) {
+//     count++;
+//   };
+// });
+// document.addEventListener('change', (k) => {
+//   if(k.target.classList.contains('counter')) {
+//     console.log(k.target)
+//   };
+// })
 
-document.addEventListener('click', (e) => {
-  count = 0;
-  if(e.target.classList.contains('liked')) {
-      console.log(e.target.textContent += `${count+1}`)
-  };
-});
+// let count = 0;
+// document.addEventListener('click', (e) => {
+//   if(e.target.classList.contains('liked')) {
+//     count++;
+//     e.target.innerHTML += `<span class="counter">${count}</span>`
+//   }
+// })
 
 
 searchInp.addEventListener('input', () => {
@@ -182,6 +210,7 @@ document.addEventListener("click", async (e) => {
       const tweet = await getOneTweet(e.target.id);
 
       editText.value = tweet.text;
+      editImg.files[0].name = tweet.img
   }
 })
 
@@ -194,6 +223,7 @@ saveBtn.addEventListener('click', (e) => {
   };
   const editedTweet = {
       text: editText.value,
+      img: editImg.files[0].name
   }
   editProduct(id, editedTweet)
 });

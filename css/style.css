@@ -138,13 +138,13 @@ main{
 }
 
 .header{
+    opacity: 0.9;
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 10;
     border: 1px solid var(--twitter-background-color);
     padding: 15px 20px;
-
 }
 
 main::-webkit-scrollbar{
@@ -228,7 +228,7 @@ main::-webkit-scrollbar{
     width: 170px;
     display: flex;
     justify-content: space-between;
-    /* margin-top: 10px; */
+    margin-top: 10px;
 }
 
 .post_badge{
