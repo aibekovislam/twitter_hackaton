@@ -33,12 +33,62 @@ html{
 
 .Menu_options .material-icons{
     padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#icon_chat:hover {
+    color: rgb(29, 155, 240); 
+    opacity: 1;
+    transition: 0.4s;
+}
+
+#icon_retweet:hover {
+    color: #5cd65c;
+    opacity: 1;
+    transition: 0.4s;
+}
+
+#icon_like:hover {
+    color: #ff3333;
+    opacity: 1;
+    transition: 0.4s;
 }
 
 .Menu_options h2{
     font-size: 20px;
     font-weight: bold;
     margin-right: 20px;
+    /* height: 50px; */
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.tweet_btn:hover {
+    opacity: 0.6;
+}
+
+.post:hover{
+    background: rgb(0, 0, 0, 0.03);
+    cursor:pointer;
+    transition: 0.5s;
+}
+
+
+.btnModal {
+    width: 100%;
+    color: rgb(83, 100, 113);
+    border: none;
+    font-weight: bold;
+    border-radius: 30px;
+    height: 50px;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.btnModal:hover{
+    background-color: #50b6f513;
+    color: #50b7f5;
 }
 
 .Menu_options:hover{
@@ -175,11 +225,10 @@ main::-webkit-scrollbar{
 }
 
 .post_footer{
+    width: 170px;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-
-
+    /* margin-top: 10px; */
 }
 
 .post_badge{
@@ -191,14 +240,21 @@ main::-webkit-scrollbar{
 
 .header-icon-section{
     font-weight: 600;
-    font-size: 12px;
+    font-size: 15px;
     color: grey;
 }
 
 .post_header-text h3{
-    font-size: 13px;
+    font-size: 17px;
     margin-bottom: 5px;
+    font-weight: 700;
+}
 
+
+.post_header-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .post_header-discription{
@@ -286,3 +342,7 @@ aside{
     height: 28px;
     /* margin-right: 4px; */
   }
+/* 
+  .liked{
+    content: url(../);
+  } */
